@@ -4,6 +4,7 @@ import requests
 from fake_useragent import UserAgent
 from eth_account.messages import encode_defunct
 import random
+from pathlib import Path
 
 from inputs.config import config
 
