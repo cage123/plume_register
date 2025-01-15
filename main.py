@@ -95,10 +95,14 @@ class Plume:
                     response = session.post(url=URL, headers=headers, json=json_data, cookies=cookies, params=params, data=data, allow_redirects=allow_redirects)
                     if response.ok:
                         return response
+                    else:
+                        print(response.text)
                 elif method.lower() == 'get':
                     response = session.get(url=URL, headers=headers, cookies=cookies, params=params, data=data, allow_redirects=allow_redirects)
                     if response.ok:
                         return response
+                    else:
+                        print(response.text)
             except:
                 time.sleep(1)
                 pass
@@ -144,6 +148,7 @@ if __name__ == '__main__':
                     with open('results/success.txt', 'a') as file:
                         file.write(f'{plume.privatekey}\n')
                 else:
+                    print('Failed')
                     with open('results/failed.txt', 'a') as file:
                         file.write(f'{plume.privatekey}\n')
             else:
