@@ -119,16 +119,25 @@ class Plume:
         except Exception as error:
             print(f'Error: {error}')
             return 0
-
+def check_and_create_dir(file_path: Path):
+    if file_path.is_file():
+        pass
+    else:
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+        file_path.touch()
+    return None
+    
 if __name__ == '__main__':
-    with open('inputs\private_keys.txt', 'r') as file:
+    with open('inputs/private_keys.txt', 'r') as file:
         private_keys = file.read().splitlines()
     
-    with open('inputs\proxies.txt', 'r') as file:
+    with open('inputs/proxies.txt', 'r') as file:
         proxies = file.read().splitlines()
     
     accounts = list(zip(private_keys, proxies))
-
+    check_and_create_dir(Path('./results/success.txt'))
+    check_and_create_dir(Path('./results/failed.txt'))
+    
     if config['TO_SHUFFLE']:
         random.shuffle(accounts)
 
